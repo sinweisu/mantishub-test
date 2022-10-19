@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
-import { CreateArticleDto } from './dto/create-article.dto';
-import { UpdateArticleDto } from './dto/update-article.dto';
+import { ArticleDto } from './dto/articleDto.dto';
 import { Article } from './entities/article.entity';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class ArticleService {
     private userService: UserService,
   ) {}
 
-  async create(article: Article) {
+  async create(article: ArticleDto) {
     await this.articleRepository.save(article);
   }
 

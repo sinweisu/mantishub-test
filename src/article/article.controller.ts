@@ -1,7 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { CreateArticleDto } from './dto/create-article.dto';
-import { UpdateArticleDto } from './dto/update-article.dto';
+import { ArticleDto } from './dto/articleDto.dto';
 import { Article } from './entities/article.entity';
 
 @Controller('article')
@@ -9,7 +16,7 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Post()
-  create(@Body() createArticleDto: Article) {
+  create(@Body() createArticleDto: ArticleDto) {
     return this.articleService.create(createArticleDto);
   }
 

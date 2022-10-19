@@ -29,6 +29,13 @@ export class Article {
   })
   content: string;
 
+  @Column({
+    type: 'bool',
+    default: false,
+    name: 'is_private',
+  })
+  isPrivate: boolean;
+
   @ManyToOne(() => User, (user) => user.articles)
   @JoinColumn({ name: 'user_id' })
   user: User;
