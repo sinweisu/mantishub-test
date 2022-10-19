@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { ArticleDto } from './dto/articleDto.dto';
 import { Article } from './entities/article.entity';
@@ -10,7 +9,6 @@ export class ArticleService {
   constructor(
     @InjectRepository(Article)
     private readonly articleRepository: Repository<Article>,
-    private userService: UserService,
   ) {}
 
   async create(article: ArticleDto) {
@@ -21,6 +19,7 @@ export class ArticleService {
     return await this.articleRepository.find({
       relations: {
         user: true,
+        tags: true,
       },
     });
   }

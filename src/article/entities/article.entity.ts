@@ -1,10 +1,13 @@
 import { Comment } from 'src/comment/entities/comment.entity';
+import { Tag } from 'src/tag/entities/tag.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -32,6 +35,7 @@ export class Article {
   @Column({
     type: 'bool',
     default: false,
+    nullable: false,
     name: 'is_private',
   })
   isPrivate: boolean;
@@ -43,9 +47,20 @@ export class Article {
   @OneToMany(() => Comment, (comment) => comment.article)
   comments: Comment[];
 
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags: Tag[];
+
   @CreateDateColumn({
     type: 'timestamptz',
     name: 'created_at',
   })
   createdAt: Date;
+
+  @Column({
+    type: 'timestamptz',
+    name: 'updated_at',
+    nullable: true,
+  })
+  updatedAt: Date;
 }
