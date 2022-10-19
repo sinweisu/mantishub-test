@@ -2,11 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { StudentModule } from './student/student.module';
-import { TeacherModule } from './teacher/teacher.module';
-import { DepartmentModule } from './department/department.module';
-import { CourseModule } from './course/course.module';
-import { ProfileModule } from './profile/profile.module';
+import { UserModule } from './user/user.module';
+import { TagModule } from './tag/tag.module';
+import { CommentModule } from './comment/comment.module';
+import { ArticleModule } from './article/article.module';
 
 @Module({
   imports: [
@@ -24,11 +23,10 @@ import { ProfileModule } from './profile/profile.module';
       migrationsTableName: 'typeorm_migrations',
       subscribers: [],
     }),
-    StudentModule,
-    TeacherModule,
-    DepartmentModule,
-    CourseModule,
-    ProfileModule,
+    CommentModule,
+    TagModule,
+    UserModule,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
